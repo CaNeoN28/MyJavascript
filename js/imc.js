@@ -15,8 +15,8 @@ for (var i = 0; i < pacientes.length; i++)
     var altura = tdAltura.textContent;
     var imc = calculaIMC(altura, peso); 
 
-    var pesoEValido = true;
-    var alturaEValida = true;
+    var pesoEValido = validaPeso(peso);
+    var alturaEValida = validaAltura(peso);
 
     if (peso <= 0 || peso >= 1000){
         console.log("Peso Inválido");
@@ -45,3 +45,17 @@ function calculaIMC(altura, peso){
 
     return imc.toFixed(2);
 };
+
+function validaPeso(peso){
+    if (peso >= 2 && peso <= 1000)
+        return true
+    
+    return false
+}
+
+function validaAltura(Altura){
+    if (altura >= 0 && altura <= 3)
+        return true
+    
+    return false
+}
