@@ -1,6 +1,8 @@
 var botao_adicionar = document.querySelector("#adicionar-paciente");
 
-botao_adicionar.addEventListener("click", function(event){
+botao_adicionar.addEventListener("click", registrarPaciente());
+
+function registrarPaciente(event){
 
     event.preventDefault();
 
@@ -31,4 +33,4 @@ botao_adicionar.addEventListener("click", function(event){
 
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
-});
+};
