@@ -1,9 +1,7 @@
 var botao_adicionar = document.querySelector("#adicionar-paciente");
 
-botao_adicionar.addEventListener("click", registrarPaciente());
-
-function registrarPaciente(event){
-
+botao_adicionar.addEventListener("click", function (event)
+{
     event.preventDefault();
 
     var form = document.querySelector('#form-adiciona');
@@ -12,6 +10,7 @@ function registrarPaciente(event){
     var peso = form.peso.value;
     var altura = form.altura.value;
     var gordura = form.gordura.value;
+    var imc = calculaIMC(altura, peso);
 
     var pacienteTr = document.createElement("tr");
 
@@ -25,12 +24,15 @@ function registrarPaciente(event){
     pesoTd.textContent = peso;
     alturaTd.textContent = altura;
     gorduraTd.textContent = gordura;
+    imcTd.textContent = imc;
 
     pacienteTr.appendChild(nomeTd);
     pacienteTr.appendChild(pesoTd);
     pacienteTr.appendChild(alturaTd);
     pacienteTr.appendChild(gorduraTd);
+    pacienteTr.appendChild(imcTd);
 
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
-};
+
+});
