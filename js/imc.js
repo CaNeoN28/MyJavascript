@@ -1,8 +1,6 @@
 var pacientes = document.querySelectorAll(".paciente");
 //coleta todos os pacientes em um array
 
-console.log(pacientes)
-
 for (var i = 0; i < pacientes.length; i++)
 {
     var paciente = pacientes[i];
@@ -16,18 +14,16 @@ for (var i = 0; i < pacientes.length; i++)
     var imc = calculaIMC(altura, peso); 
 
     var pesoEValido = validaPeso(peso);
-    var alturaEValida = validaAltura(peso);
+    var alturaEValida = validaAltura(altura);
 
-    if (peso <= 0 || peso >= 1000){
+    if (!pesoEValido){
         console.log("Peso Inválido");
-        pesoEValido = false;
         tdImc.textContent = "Peso Inválido";
         paciente.classList.add("paciente-invalido");
     }
 
-    if (altura <= 0 || altura >= 3){
+    if (!alturaEValida){
         console.log("Altura Inválida");
-        alturaEValida = false;
         tdImc.textContent = "Altura Inválida";
         paciente.classList.add("paciente-invalido");
         //Adciona uma classe ao campo inválido
@@ -53,7 +49,7 @@ function validaPeso(peso){
     return false
 }
 
-function validaAltura(Altura){
+function validaAltura(altura){
     if (altura >= 0 && altura <= 3)
         return true
     
