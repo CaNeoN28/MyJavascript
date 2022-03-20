@@ -9,10 +9,16 @@ botao_adicionar.addEventListener("click", function(event){
 
     var pacienteTr = montaTr(paciente);
 
-    if(!validaPaciente(paciente)){
-        alert("Paciente inválido!");
+    var erros = validaPaciente(paciente);
+
+    if(erros.length > 0){
+        exibeErros(erros);
+        
         return;
     }
+
+    var mensagens_erros = document.querySelector("#mensagens-erro");
+    mensagens_erros.innerHTML = "";
 
     var tabela = document.querySelector("#tabela-pacientes");
     tabela.appendChild(pacienteTr);
@@ -60,7 +66,38 @@ function montarTd(dado, classe){
 }
 
 function validaPaciente(paciente){
-    if(validaPeso(paciente.peso) && validaAltura(paciente.altura))
-        return true
-    return false
+    var erros = [];
+
+    if(!validaNome(paciente.nome))
+        erros.push("O nome deve possuir pelo menos 3 caractéres!");
+
+    if(!validaPeso(paciente.peso))
+        erros.push("Peso inválido!");
+
+    if(!validaAltura(paciente.altura))
+        erros.push("Altura inválida!");
+
+    if(!validaGordura(paciente.gordura))
+        erros.push("A gordura está inválida!");
+    
+    return erros;
+}
+
+function exibeErros(erros){
+    var ul = document.querySelector("#mensagens-erro")
+
+    ul.innerHTML = "";
+
+    erros.forEach(function(erro){
+        var li = document.createElement('li');
+        li.textContent = erro;
+        ul.appendChild(li);
+    });
+}
+
+function montarErrosLi(erro){
+    var li = document.createElement("li");
+    li.textContent = erro;
+
+    return li;
 }
